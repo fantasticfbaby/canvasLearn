@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            margin: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            /* cursor: none; */
+            background: black;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
+        }
+
+        .filter {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fe5757;
+            animation: colorChange 30s ease-in-out infinite;
+            animation-fill-mode: both;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes colorChange {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: .9;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="filter"></div> -->
+    <canvas id="canvas"></canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        round = [],
+        WIDTH,
+        HEIGHT,
+        initRoundPopulation = 80;
+
+    WIDTH = document.documentElement.clientWidth;
+    HEIGHT = document.documentElement.clientHeight;
+
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+
+    class Round_item {
+        constructor(index, x, y, context) {
+            this.index = index;
+            this.x = x;
+            this.y = y;
+            this.r = Math.random() * 2 + 1;
+            let alpha = (Math.floor(Math.random() * 10) + 1) / 10 / 2;
+            this.color = `rgba(255,255,255,${alpha})`;
+            this.context = context;
+        }
+        draw() {
+            this.context.fillStyle = this.color
+            this.context.shadowBlur=this.r * 2;
+            this.context.beginPath();
+            this.context.arc(this.x, this.y, this.r, Math.PI / 180 * 0, Math.PI / 180 * 360, false);
+            this.context.closePath();
+            this.context.fill();
+        }
+        move(){
+            this.y -= 0.15
+            if(this.y <= -10){
+                this.y += HEIGHT + 10;
+            }
+            this.draw()
+        }
+    }
+    function init(){
+        for(let i=0;i<initRoundPopulation;i++){
+            round[i] = new Round_item(i, Math.random() * WIDTH, Math.random() * HEIGHT, context);
+            round[i].draw()
+        }
+        animate()
+    }
+    init();
+
+    function animate(){
+        context.clearRect(0, 0, WIDTH, HEIGHT);
+        for(let i in round) {
+            round[i].move();
+        }
+        requestAnimationFrame(animate)
+    }
+
+
+
+</script>

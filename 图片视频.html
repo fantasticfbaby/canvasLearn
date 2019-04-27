@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        #canvas {
+            background-color: #000000;
+            /* 不要使用css来设置canvas的宽高 */
+        }
+    </style>
+</head>
+<body>
+    <!-- canvas 默认 300*150 -->
+    <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>
+<script>
+    var canvas= document.getElementById("canvas")
+    var context = canvas.getContext('2d');
+    var img = new Image()
+    img.src = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556346666320&di=ef94b2fa243ff3c72abbc8279aab87f0&imgtype=0&src=http%3A%2F%2Fs11.sinaimg.cn%2Fmw690%2F006hikKrzy7slvzPwSKba%26690'
+    context.drawImage(img, 0,0, 100,100); // 在0，0的位置放置图片，图片伸缩为100*100
+    context.drawImage(img, 200, 200, 100, 100, 100, 100, 100,100); // 从原图的100，100位置，剪下100*100的图片，放到画布的100，100位置，伸缩为100*100大小
+    
+    
+
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- canvas 默认 300*150 -->
+    <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var context = canvas.getContext('2d');
+    // var cw = canvas.width = 400; 
+    // var ch = canvas.height = 400;
+    context.beginPath();
+
+    context.fillStyle='#fff';
+    context.fillRect(10,10,100,100);
+
+    context.strokeStyle='red';
+    context.lineWidth=5;
+    context.strokeRect(10, 10, 100, 100);
+    
+    
+</script>

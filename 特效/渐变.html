@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- canvas 默认 300*150 -->
+    <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+
+</html>
+<script>
+    var canvas = document.getElementById("canvas")
+    var context = canvas.getContext('2d');
+
+    var grd = context.createLinearGradient(100, 100, 100, 300);
+    grd.addColorStop(0, 'rgb(255, 0, 0)');
+    grd.addColorStop(0.2, 'rgb(255, 165, 0)');
+    grd.addColorStop(0.3, 'rgb(255, 255, 0)');
+    grd.addColorStop(0.5, 'rgb(0, 255, 0)');
+    grd.addColorStop(0.7, 'rgb(0, 127, 255)');
+    grd.addColorStop(0.9, 'rgb(0, 0, 255)');
+    grd.addColorStop(1, 'rgb(139, 0, 255)');
+
+    context.fillStyle = grd;
+    context.fillRect(100, 100, 200, 200);
+</script>
